@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- "Mark Favorite", should appear as action button if possible -->
+    <item
+            android:id="@+id/navigation_session"
+            android:icon="@drawable/ic_chat_black_24dp"
+            android:title="VoChat"/>
+
+    <item
+            android:id="@+id/navigation_contact"
+            android:icon="@drawable/ic_contact_black_24dp"
+            android:title="Contact"/>
+
+    <item
+            android:id="@+id/navigation_me"
+            android:icon="@drawable/ic_account_black_24dp"
+            android:title="Me"/>
+</menu>
