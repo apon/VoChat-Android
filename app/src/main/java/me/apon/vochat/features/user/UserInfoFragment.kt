@@ -62,7 +62,7 @@ class UserInfoFragment : BaseMvRxFragment() {
             if (user != null) {
                 when (from) {
                     "contact" -> {
-                        ChatActivity.start(context!!, user!!.id, user!!.name)
+                        ChatActivity.start(activity!!, user!!.id, user!!.name)
                         activity!!.finish()
                     }
                     "search" -> {
@@ -85,7 +85,7 @@ class UserInfoFragment : BaseMvRxFragment() {
                 is Success -> {
                     val msg = it.addContact.invoke()
                     Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
-                    ChatActivity.start(context!!, user!!.id, user!!.name)
+                    ChatActivity.start(activity!!, user!!.id, user!!.name)
                     activity!!.finish()
                 }
 

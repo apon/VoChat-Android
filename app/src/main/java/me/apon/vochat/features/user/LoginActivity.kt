@@ -1,6 +1,6 @@
 package me.apon.vochat.features.user
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,7 +12,7 @@ import me.apon.vochat.app.BaseActivity
  */
 class LoginActivity : BaseActivity() {
     companion object {
-        fun start(context: Context) {
+        fun start(context: Activity) {
             val intent = Intent(context, LoginActivity::class.java)
             context.startActivity(intent)
         }

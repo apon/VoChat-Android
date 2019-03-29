@@ -36,7 +36,7 @@ class LoginFragment : BaseMvRxFragment() {
         }
 
         to_register_tv.setOnClickListener {
-            RegisterActivity.start(activity!!.applicationContext)
+            RegisterActivity.start(activity!!)
         }
     }
 
@@ -48,7 +48,7 @@ class LoginFragment : BaseMvRxFragment() {
                 }
 
                 is Success -> {
-                    VOChatActivity.start(activity!!.applicationContext)
+                    VOChatActivity.start(activity!!)
                     activity!!.finish()
                 }
 

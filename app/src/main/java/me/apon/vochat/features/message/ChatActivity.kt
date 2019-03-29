@@ -1,6 +1,6 @@
 package me.apon.vochat.features.message
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -16,7 +16,7 @@ class ChatActivity : BaseActivity() {
     lateinit var toId: String
 
     companion object {
-        fun start(context: Context, toId: String, chatName: String) {
+        fun start(context: Activity, toId: String, chatName: String) {
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra("toId", toId)
             intent.putExtra("chatName", chatName)
@@ -70,7 +70,7 @@ class ChatActivity : BaseActivity() {
                 finish()
             }
             R.id.action_user_info -> {
-                UserInfoActivity.start(applicationContext, toId)
+                UserInfoActivity.start(this, toId)
             }
         }
         return super.onOptionsItemSelected(item)

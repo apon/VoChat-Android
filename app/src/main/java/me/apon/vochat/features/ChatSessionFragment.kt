@@ -42,7 +42,7 @@ class ChatSessionFragment : BaseMvRxFragment() {
 
         adapter.setOnDialogClickListener {
 
-            ChatActivity.start(context!!, it.sessionId, it.sessionName)
+            ChatActivity.start(activity!!, it.sessionId, it.sessionName)
 
         }
     }

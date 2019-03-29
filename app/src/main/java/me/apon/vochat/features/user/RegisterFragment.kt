@@ -46,7 +46,7 @@ class RegisterFragment : BaseMvRxFragment() {
                 }
 
                 is Success -> {
-                    VOChatActivity.start(activity!!.applicationContext)
+                    VOChatActivity.start(activity!!)
                     activity!!.finish()
                 }
 

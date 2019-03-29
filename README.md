@@ -3,6 +3,11 @@
 
 服务器端是用PHP基于GatewayWorker写的。[VoChat-Service](https://github.com/apon/VoChat-Service)
 
+下载：
+![二维码-w100](Screenshot/QRcode.png)
+
+[https://fir.im/vochat](https://fir.im/vochat)
+
 用到的主要库有：
 
 1. [Airbnb的MvRx](https://github.com/airbnb/MvRx)

@@ -1,5 +1,6 @@
 package me.apon.vochat.features
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +18,7 @@ import me.apon.vochat.features.user.AddContactsActivity
  */
 class VOChatActivity : BaseActivity() {
     companion object {
-        fun start(context: Context) {
+        fun start(context: Activity) {
             val intent = Intent(context, VOChatActivity::class.java)
             context.startActivity(intent)
         }
@@ -90,7 +91,7 @@ class VOChatActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_add_contact -> {
-            AddContactsActivity.start(applicationContext)
+            AddContactsActivity.start(this)
             true
         }
         R.id.action_about -> {

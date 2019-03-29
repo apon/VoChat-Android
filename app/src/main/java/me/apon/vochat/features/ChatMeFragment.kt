@@ -35,7 +35,7 @@ class ChatMeFragment : BaseMvRxFragment() {
             viewModel.unBind()
             Hawk.delete("loginUser")
             activity?.finish()
-            LoginActivity.start(activity!!.applicationContext)
+            LoginActivity.start(activity!!)
         }
         name_tv.setOnClickListener {
             updateName()

@@ -44,7 +44,7 @@ class AddContactsFragment : BaseMvRxFragment() {
                     val res = it.searchUser.invoke()
                     if (res.isNotEmpty()) {
                         val user = res[0]
-                        UserInfoActivity.start(context!!, user, "search")
+                        UserInfoActivity.start(activity!!, user, "search")
                         activity!!.finish()
                     } else {
                         Toast.makeText(context, "Not found!", Toast.LENGTH_LONG).show()

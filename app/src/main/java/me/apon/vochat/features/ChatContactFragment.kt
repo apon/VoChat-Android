@@ -44,7 +44,7 @@ class ChatContactFragment : BaseMvRxFragment() {
         recyclerView.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
         recyclerView.adapter = adapter
         adapter.setOnItemClickListener {
-            UserInfoActivity.start(context!!, it, "contact")
+            UserInfoActivity.start(activity!!, it, "contact")
         }
         adapter.setOnChildItemClickListener {
             when (it.id) {
@@ -56,7 +56,7 @@ class ChatContactFragment : BaseMvRxFragment() {
 
 
         addContacts.setOnClickListener {
-            AddContactsActivity.start(context!!)
+            AddContactsActivity.start(activity!!)
         }
     }
 
