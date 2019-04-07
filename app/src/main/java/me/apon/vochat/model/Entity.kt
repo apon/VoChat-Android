@@ -23,6 +23,14 @@ const val CMD_UNBIND:Long = 1008
 const val CMD_SEND_MSG: Long = 2000 //发送消息
 const val CMD_REC_MSG: Long = 2001 //接收消息
 
+const val CMD_REQ_VOICE:Long = 2002 //请求语音聊天
+const val CMD_VOICE_MSG:Long = 2003 //收发语音
+
+const val REQ_VOICE_TYPE_ASK = 100 //请求语音聊天
+const val REQ_VOICE_TYPE_CANCEL = 200 //拒绝、取消语音聊天
+const val REQ_VOICE_TYPE_ACCEPT = 300 //接受语音聊天
+
+
 const val PEER_TYPE_C2C = 100 //单聊
 const val PEER_TYPE_GROUP = 200 //群聊
 /////////////////基类//////////////////////
@@ -97,7 +105,7 @@ data class BindReq(
 //-------解绑------------------
 
 //用户解绑 cmd = 1008
-class UnBindReq : BaseReq(CMD_BIND)
+class UnBindReq : BaseReq(CMD_UNBIND)
 //用户解绑返回 cmd = 1008
 //BaseResp
 
@@ -177,5 +185,35 @@ data class RecMessageResp(
     val toName: String,
     val created: Long,
     val peerType: Int,
+    val content: String
+) : BaseResp()
+
+//请求语言聊天 cmd = 2002
+data class ReqVoiceReq(
+    val fromId: String,
+    val fromName: String,
+    val toId: String,
+    val toName: String,
+    val reqType:Int
+):BaseReq(CMD_REQ_VOICE)
+//请求语言聊天返回 cmd = 2002
+data class ReqVoiceResp(
+    val fromId: String,
+    val fromName: String,
+    val toId: String,
+    val toName: String,
+    val reqType:Int
+):BaseResp()
+
+//发送语音 cmd = 2003
+data class VoiceMsgReq(
+    val fromId: String,
+    val toId: String,
+    val content: String
+):BaseReq(CMD_VOICE_MSG)
+//接收语音 cmd = 2003
+data class VoiceMsgResp(
+    val fromId: String,
+    val toId: String,
     val content: String
 ) : BaseResp()

@@ -1,15 +1,21 @@
 package me.apon.vochat.features.user
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.airbnb.mvrx.*
 import kotlinx.android.synthetic.main.user_info_fragment.*
 import me.apon.vochat.R
 import me.apon.vochat.features.message.ChatActivity
+import me.apon.vochat.features.message.VoiceActivity
 import me.apon.vochat.model.User
 
 /**
@@ -48,12 +54,15 @@ class UserInfoFragment : BaseMvRxFragment() {
 
         okBT.text = when (from) {
             "contact" -> {
+                voiceBT.visibility = View.VISIBLE
                 "Send Message"
             }
             "search" -> {
+                voiceBT.visibility = View.GONE
                 "Add Contact"
             }
             else -> {
+                voiceBT.visibility = View.GONE
                 ""
             }
         }
@@ -73,6 +82,42 @@ class UserInfoFragment : BaseMvRxFragment() {
             }
 
         }
+
+        voiceBT.setOnClickListener {
+            toVoiceActivity()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        @NonNull permissions: Array<String>,
+        @NonNull grantResults: IntArray
+    ) {
+        when (requestCode) {
+            100 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    voiceStart()
+                    toVoiceActivity()
+                }
+            }
+        }
+    }
+
+    private fun toVoiceActivity(){
+        if (ContextCompat.checkSelfPermission(
+                context!!,
+                Manifest.permission.RECORD_AUDIO
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity!!,
+                arrayOf(Manifest.permission.RECORD_AUDIO),
+                100
+            )
+            return
+        }
+        VoiceActivity.start(activity!!, user!!.id, user!!.name)
+        activity!!.finish()
     }
 
     override fun invalidate() {

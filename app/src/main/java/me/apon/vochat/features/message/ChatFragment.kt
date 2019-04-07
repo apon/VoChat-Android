@@ -53,11 +53,11 @@ class ChatFragment : BaseMvRxFragment() {
             true
         }
 
-        if (toId != null) {
-            viewModel.getMsg(loginUser.id, toId)
-            viewModel.clearUnReadCount(toId)
-            NewMessageNotification.cancel(context!!, toId)
-        }
+
+        viewModel.getMsg(loginUser.id, toId)
+        viewModel.clearUnReadCount(toId)
+        NewMessageNotification.cancel(context!!, toId)
+
     }
 
     override fun onResume() {

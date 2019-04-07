@@ -12,6 +12,7 @@ import me.apon.vochat.app.VOChatApp
 import me.apon.vochat.db.AppRoomDatabase
 import me.apon.vochat.db.LocalMessage
 import me.apon.vochat.db.LocalSession
+import me.apon.vochat.features.message.VoiceActivity
 import me.apon.vochat.model.*
 import me.apon.vochat.service.callback.MessageReceiver
 
@@ -55,6 +56,7 @@ class MainService : Service() {
 //        startForeground(1, Notification())
         network.start()
         network.addReceiver(msgReceiver)
+        network.addReceiver(voiceReceiver)
         Log.d("MainService", "-----onCreate----")
         val intentFilter = IntentFilter()
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
@@ -148,6 +150,25 @@ class MainService : Service() {
 
         }
 
+    }
+
+    private val voiceReceiver=object :MessageReceiver(CMD_REQ_VOICE,false){
+        override fun onReceive(msg: String) {
+            val resp = Json.M.moshi.adapter<ReqVoiceResp>(ReqVoiceResp::class.java).fromJson(msg)
+            if (resp?.code == 200) {
+                when(resp.reqType){
+                    REQ_VOICE_TYPE_ACCEPT->{
+
+                    }
+                    REQ_VOICE_TYPE_CANCEL->{
+
+                    }
+                    REQ_VOICE_TYPE_ASK->{
+                        VoiceActivity.startFromService(applicationContext,resp.fromId,resp.fromName)
+                    }
+                }
+            }
+        }
     }
 
 }

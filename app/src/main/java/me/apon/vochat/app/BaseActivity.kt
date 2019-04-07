@@ -22,12 +22,15 @@ open class BaseActivity : BaseMvRxActivity() {
             mainService = service
             chatNetService = service.getNetwork()
             Log.d("BaseActivity:", "----onServiceConnected----")
+            onServiceConnected()
         }
 
         override fun onServiceDisconnected() {
             Log.d("BaseActivity:", "----onServiceDisconnected----")
         }
     }
+
+    open fun onServiceConnected(){}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

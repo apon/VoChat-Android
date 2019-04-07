@@ -16,5 +16,7 @@
     <string name="button_login">Login</string>
     <string name="label_create_account">Create Account</string>
     <string name="button_register">Register</string>
+    <string name="voice_cancel">Cancel</string>
+    <string name="voice_accept">Accept</string>
 
 </resources>

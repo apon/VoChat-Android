@@ -20,7 +20,7 @@ data class ChatRoomStat(
 class ChatViewModel(
     initStat: ChatRoomStat,
     private val roomDatabase: AppRoomDatabase,
-    private val baseActivity: BaseActivity?
+    private var baseActivity: BaseActivity?
 ) : BaseMvRxViewModel<ChatRoomStat>(initStat) {
 
     companion object : MvRxViewModelFactory<ChatViewModel, ChatRoomStat> {
@@ -84,5 +84,10 @@ class ChatViewModel(
         baseActivity?.mainService?.subscribeMsg(messageTag) {
             getMsg(fromId, toId)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        baseActivity = null
     }
 }

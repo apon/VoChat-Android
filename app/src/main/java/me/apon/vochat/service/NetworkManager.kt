@@ -161,8 +161,8 @@ class NetworkManager private constructor() :BaseManager() {
             lemon.send(msg)
             Log.d("NetworkManager", "send request： $msg")
         }else{
-            val listener = callbackQueue.popCallBack(req.id)
-            listener?.onTimeout()
+            val listener2 = callbackQueue.popCallBack(req.id)
+            listener2?.onTimeout()
             lemon.connect()
         }
     }

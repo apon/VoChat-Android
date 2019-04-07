@@ -25,7 +25,7 @@ data class UserState(
 class UserViewModel(
     initState: UserState,
     private val roomDatabase: AppRoomDatabase,
-    private val baseActivity: BaseActivity?
+    private var baseActivity: BaseActivity?
 ) : BaseMvRxViewModel<UserState>(initState, true) {
 
     companion object : MvRxViewModelFactory<UserViewModel, UserState> {
@@ -184,5 +184,10 @@ class UserViewModel(
     fun unBind(){
         val req = UnBindReq()
         baseActivity?.chatNetService?.sendBroadcast(req)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        baseActivity = null
     }
 }
